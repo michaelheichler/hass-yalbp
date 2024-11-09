@@ -1,5 +1,5 @@
 blueprint:
-  name: Smart Light Automation 🌞💡 (DND Fix Version)
+  name: Yet Another (Smart) Light Blueprint🌞💡 (YASLB)
   description: >
     💡 This automation controls your lights based on presence/motion sensors!
     Customize your lights with optional lux sensors, adaptive lighting, and a Do Not Disturb (DND) period 💤.
