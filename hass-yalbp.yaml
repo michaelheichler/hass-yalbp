@@ -1,0 +1,221 @@
+blueprint:
+  name: Smart Light Automation 🌞💡 (DND Fix Version)
+  description: >
+    💡 This automation controls your lights based on presence/motion sensors!
+    Customize your lights with optional lux sensors, adaptive lighting, and a Do Not Disturb (DND) period 💤.
+    Lights will automatically turn off after a delay when no motion is detected.
+    Improved error handling for DND time parsing to prevent issues with invalid time formats.
+  domain: automation
+  input:
+    ## Presence Settings
+    presence_sensors:
+      name: Presence Sensors 🕵️‍♂️
+      description: Choose presence/motion sensors to control your lights automatically. 📡
+      selector:
+        entity:
+          domain: binary_sensor
+          multiple: true
+
+    light_group:
+      name: Light Group 💡
+      description: Select the light group to be controlled by this automation.
+      selector:
+        entity:
+          domain: light
+
+    ## Adaptive Lighting Settings
+    adaptive_lighting:
+      name: Adaptive Lighting 🌈 (Optional)
+      description: Enable an adaptive lighting switch to automatically adjust your lights based on the time of day.
+      default: ""
+      selector:
+        entity:
+          domain: switch
+
+    ## Lux Sensor Settings
+    lux_sensor:
+      name: Lux Sensor 🌞 (Optional)
+      description: Use a lux sensor to decide if the current brightness level needs adjusting.
+      default: ""
+      selector:
+        entity:
+          domain: sensor
+    lux_threshold:
+      name: Lux Threshold 🌡️
+      description: Set the brightness threshold for when the lux sensor should activate the lights. 📊
+      default: 50
+      selector:
+        number:
+          min: 0
+          max: 1000
+          unit_of_measurement: lx
+
+    ## Sun Condition Settings
+    use_sun_condition:
+      name: Sun Condition ☀️
+      description: Enable this to adjust lights based on the sun's position.
+      default: true
+      selector:
+        boolean: {}
+
+    ## Light Timeout Settings
+    light_timeout:
+      name: Light Timeout ⏲️ (seconds)
+      description: Set how long the lights stay on after no presence is detected.
+      default: 15
+      selector:
+        number:
+          min: 1
+          max: 3600
+          unit_of_measurement: seconds
+
+    ## Do Not Disturb (DND) Settings
+    dnd_toggle:
+      name: Do Not Disturb (DND) Mode 🚫💤 (Optional)
+      description: Toggle to enable or disable Do Not Disturb mode.
+      default: false
+      selector:
+        boolean: {}
+    dnd_start_time:
+      name: DND Start Time 🕒 (Optional)
+      description: Set the start time for Do Not Disturb. 🕰️
+      default: ""
+      selector:
+        time: {}
+    dnd_end_time:
+      name: DND End Time 🕒 (Optional)
+      description: Set the end time for Do Not Disturb. 🕰️
+      default: ""
+      selector:
+        time: {}
+
+    ## Light Transition Settings
+    transition_duration:
+      name: Transition Duration 🌅
+      description: How long should light transitions take (in seconds)?
+      default: 2
+      selector:
+        number:
+          min: 0
+          max: 30
+          step: 0.5
+          unit_of_measurement: seconds
+
+variables:
+  lux_threshold: !input lux_threshold
+  lux_sensor: !input lux_sensor
+  dnd_start_time: !input dnd_start_time
+  dnd_end_time: !input dnd_end_time
+  adaptive_lighting: !input adaptive_lighting
+  use_sun_condition: !input use_sun_condition
+  light_group: !input light_group
+  dnd_toggle: !input dnd_toggle
+
+trigger:
+  - platform: state
+    entity_id: !input presence_sensors
+    to: "on"
+    id: presence_detected
+  - platform: state
+    entity_id: !input presence_sensors
+    to: "off"
+    for:
+      seconds: !input light_timeout
+    id: presence_gone
+
+condition:
+  - condition: template
+    value_template: >
+      {% if not dnd_toggle %}
+        true
+      {% elif not dnd_start_time or not dnd_end_time %}
+        true
+      {% else %}
+        {% set current = now().strftime('%H:%M') %}
+        {% set start = dnd_start_time[0:5] %}
+        {% set end = dnd_end_time[0:5] %}
+        {% if start <= end %}
+          {{ not (start <= current <= end) }}
+        {% else %}
+          {{ not (current >= start or current <= end) }}
+        {% endif %}
+      {% endif %}
+
+action:
+  - service: logbook.log
+    data:
+      name: "Debug Automation"
+      message: "Triggered automation with trigger: {{ trigger.id | default('unknown') }}"
+  - choose:
+      - conditions:
+          - condition: trigger
+            id: presence_detected
+          - condition: or
+            conditions:
+              - condition: and
+                conditions:
+                  - condition: template
+                    value_template: >
+                      {{ use_sun_condition if use_sun_condition is defined else true }}
+                  - condition: sun
+                    before: sunrise
+                    after: sunset
+              - condition: template
+                value_template: >
+                  {% if not lux_sensor %}
+                    true
+                  {% elif states(lux_sensor) in ['unknown', 'unavailable', 'none', ''] %}
+                    false
+                  {% else %}
+                    {% set lux = states(lux_sensor) | float(-1) %}
+                    {% if lux < 0 %}
+                      false
+                    {% else %}
+                      {{ lux < lux_threshold }}
+                    {% endif %}
+                  {% endif %}
+              - condition: template
+                value_template: >
+                  {{ is_state(light_group, 'off') }}
+        sequence:
+          - service: logbook.log
+            data:
+              name: "Debug Automation"
+              message: >
+                Passed presence_detected trigger conditions.
+                Lux sensor value: {{ states(lux_sensor) if lux_sensor else "not defined" }}
+                Lux threshold: {{ lux_threshold }}
+          - service: light.turn_on
+            target:
+              entity_id: !input light_group
+          - choose:
+              - conditions:
+                  - condition: template
+                    value_template: >
+                      {{ adaptive_lighting }}
+                sequence:
+                  - service: adaptive_lighting.apply
+                    target:
+                      entity_id: "{{ adaptive_lighting }}"
+                    data:
+                      adapt_brightness: true
+                      adapt_color: true
+                  - service: logbook.log
+                    data:
+                      name: "Debug Automation"
+                      message: "Adaptive lighting applied."
+      - conditions:
+          - condition: trigger
+            id: presence_gone
+        sequence:
+          - service: logbook.log
+            data:
+              name: "Debug Automation"
+              message: "Presence gone, turning off lights."
+          - service: light.turn_off
+            target:
+              entity_id: !input light_group
+mode: single
+
+source_url: "https://github.com/michaelheichler/hass-yalbp"
+version: "1.0.3"  
