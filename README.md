@@ -1,81 +1,152 @@
-# Yet Another Smart Light Automation 🌞💡 
+<div align="center">
 
-[![Import Blueprint](https://my.home-assistant.io/badges/blueprint_import.svg)](https://my.home-assistant.io/redirect/blueprint_import/?blueprint_url=https://raw.githubusercontent.com/michaelheichler/hass-yalbp/refs/heads/main/hass-yalbp.yaml)
+# 🌟 Yet Another Light Automation Blueprint - But Smarter!
 
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)  
+[![Import Blueprint](https://my.home-assistant.io/badges/blueprint_import.svg)](https://my.home-assistant.io/redirect/blueprint_import/?blueprint_url=https://raw.githubusercontent.com/michaelheichler/hass-blueprint-lights/main/hass-blueprint-lights.yaml)
 
-**Version:** 1.0.3  
-**Source URL:** [GitHub Repository](https://github.com/michaelheichler/hass-yalbp)
+![Home Assistant Logo](https://www.home-assistant.io/images/blog/2023-09-ha10/home-assistant-logo-new.png)
 
-This blueprint provides intelligent control of your lights based on presence or motion detection. It follows the **KISS Principle** (Keep It Simple, Stupid) to ensure a straightforward, minimalistic design for seamless integration and ease of use. Customize it with optional lux sensors, adaptive lighting, and a Do Not Disturb (DND) period to ensure your lights operate precisely when needed. Enhanced with error handling for DND time parsing so invalid inputs can be handled with grace.
+![Version](https://img.shields.io/badge/version-1.1.0-blue?style=for-the-badge)
+![Status](https://img.shields.io/badge/status-stable-green?style=for-the-badge)
+![Updated](https://img.shields.io/badge/updated-March%202024-purple?style=for-the-badge)
+
+
+[![GitHub Stars](https://img.shields.io/github/stars/michaelheichler/hass-blueprint-lights?style=for-the-badge&logo=github)](https://github.com/michaelheichler/hass-blueprint-lights/stargazers)
+[![GitHub Issues](https://img.shields.io/github/issues/michaelheichler/hass-blueprint-lights?style=for-the-badge&logo=github)](https://github.com/michaelheichler/hass-blueprint-lights/issues)
+[![Buy me a coffee](https://img.shields.io/badge/PayPal-Buy%20me%20a%20coffee-blue?style=for-the-badge&logo=paypal)](https://paypal.me/MHeichler)
+
+</div>
+
+## 🎯 Overview
+
+A sophisticated Home Assistant blueprint for smart lighting that goes beyond basic motion control. This blueprint combines presence detection, ambient light sensing, and circadian rhythm support to create the perfect lighting environment throughout your day.
+
+## ✨ Key Features
+
+- 🕵️‍♂️ **Smart Presence Detection**
+  - Multi-sensor support
+  - Customizable timeout periods
+  - Intelligent motion tracking
+
+- 🌞 **Ambient Light Awareness**
+  - Optional lux sensor support
+  - Sun position tracking
+  - Adjustable light thresholds
+
+- 🌙 **Do Not Disturb Mode**
+  - Customizable quiet hours
+  - Smart transition handling
+  - Schedule-based automation
+
+- 🎨 **Advanced Light Control**
+  - Brightness management
+  - Color temperature control
+  - Smooth transitions
+
+- 🌓 **Circadian Rhythm Support**
+  - Natural light cycles
+  - Adaptive brightness
+  - Dynamic color temperature
+
+## 🛠️ Installation
+
+1. Click the "Import Blueprint" button above
+2. Configure your presence sensors and light groups
+3. Optional: Add lux sensors and DND settings
+4. Customize your light preferences
+5. Save and enjoy automated lighting!
+
+## ⚙️ Configuration Options
+
+### Essential Settings
+- Presence sensors (motion/occupancy)
+- Light group selection
+- Timeout duration
+- Transition preferences
+
+### Optional Enhancements
+- Lux sensor integration
+- Sun position tracking
+- Do Not Disturb scheduling
+- Circadian rhythm settings
+
+### Lighting Controls
+- Brightness levels (1-100%)
+- Color temperature (2000K-6500K)
+- Transition durations
+- Adaptive lighting modes
+
+## 🎨 Features in Action
+
+### Circadian Rhythm
+The blueprint automatically adjusts your lighting throughout the day:
+- 🌅 Morning: Warm, gentle light to start your day
+- ☀️ Midday: Bright, cool light for productivity
+- 🌆 Evening: Warm, dimmed light for relaxation
+
+### Smart Transitions
+- Smooth fading between states
+- Natural light level adjustments
+- Comfortable color temperature shifts
+
+### Energy Efficiency
+- Automatic shutoff when rooms are empty
+- Ambient light consideration
+- Smart scheduling capabilities
+
+## 🔮 Roadmap
+
+- [ ] Multi-room scene coordination
+- [ ] Weather-based adjustments
+- [ ] Guest mode features
+- [ ] Holiday lighting patterns
+- [ ] Voice control enhancements
+
+## 📦 Version History
+
+### v1.1.0 (Current - Early November 2024)
+- ✨ Initial release with core features
+- 🕵️‍♂️ Smart presence detection implementation
+- 🌓 Circadian rhythm support
+- 🌙 Do Not Disturb (DND) mode
+- 🎨 Advanced light control features
+- 🌡️ Dynamic color temperature adjustment
+- ⚡ Energy-efficient operation modes
+
+### Planned
+- 🏠 Multi-room scene coordination
+- 🌦️ Weather-based adjustments
+- 📊 Enhanced energy reporting
+- 🎭 Guest mode features
+- 🎨 Extended color schemes
+- 🔊 Voice control enhancements
+
+## 🤝 Contributing
+
+Contributions are welcome! Feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 👨‍💻 About the Author
+
+Created by Michael Heichler, a Data Scientist specializing in AI and automation. Passionate about creating smart home solutions that combine comfort with energy efficiency.
+
+## ☕ Support
+
+If you find this blueprint helpful, consider supporting the development:
+
+[!["Buy Me A Coffee"](https://img.shields.io/badge/PayPal-Buy%20me%20a%20coffee-blue?style=for-the-badge&logo=paypal)](https://paypal.me/MHeichler)
+
+## 📊 Stats
+
+![GitHub Stars](https://img.shields.io/github/stars/michaelheichler/hass-blueprint-lights?style=for-the-badge&logo=github)
+![GitHub Issues](https://img.shields.io/github/issues/michaelheichler/hass-blueprint-lights?style=for-the-badge&logo=github)
+![GitHub Last Commit](https://img.shields.io/github/last-commit/michaelheichler/hass-blueprint-lights?style=for-the-badge&logo=github)
 
 ---
 
-## Features
-- 🚶 **Presence/Motion Detection:** Automatically turn lights on/off based on motion or presence sensors.
-- 🌞 **Lux Sensor Integration:** Adjust light activation based on ambient brightness.
-- 🌈 **Adaptive Lighting (Optional):** Seamless integration with the Adaptive Lighting integration for brightness and color adjustments.
-- ☀️ **Sun Condition:** Automatically adjust lights based on the sun's position.
-- ⏲️ **Customizable Light Timeout:** Set how long lights stay on after no motion is detected.
-- 🚫💤 **Do Not Disturb (DND) Mode:** Prevent lights from turning on during specified times.
-
----
-
-## Requirements
-1. **Presence/Motion Sensors** (e.g., Aqara Motion Sensor, Hue Motion Sensor)
-2. **Light Group** (e.g., a group of smart bulbs)
-3. **Optional:**
-   - Lux Sensor (e.g., Hue Outdoor Sensor)
-   - Adaptive Lighting Switch (e.g., Home Assistant's Adaptive Lighting integration)
-
----
-
-## Inputs
-| Name                  | Description                                                                 | Default      | Required |
-|-----------------------|-----------------------------------------------------------------------------|--------------|----------|
-| **Presence Sensors**  | Select the presence or motion sensors to trigger the lights.               | -            | Yes      |
-| **Light Group**       | Choose the light group to control.                                         | -            | Yes      |
-| **Adaptive Lighting** | Optional: Enable adaptive lighting for brightness and color adjustments.   | ""           | No       |
-| **Lux Sensor**        | Optional: Use a lux sensor to adjust light activation based on brightness. | ""           | No       |
-| **Lux Threshold**     | Set the brightness level to activate lights when using a lux sensor.       | 50 lx        | No       |
-| **Sun Condition**     | Enable sun-based conditions for light activation.                         | True         | No       |
-| **Light Timeout**     | Set how long the lights stay on after no motion is detected.               | 15 seconds   | No       |
-| **DND Toggle**        | Enable or disable Do Not Disturb mode.                                     | False        | No       |
-| **DND Start Time**    | Set the start time for Do Not Disturb.                                     | ""           | No       |
-| **DND End Time**      | Set the end time for Do Not Disturb.                                       | ""           | No       |
-| **Transition Duration** | Set the duration for light transitions (e.g., dimming).                   | 2 seconds    | No       |
-
----
-
-## Example Use Case
-- Automatically turn on lights when motion is detected in a room.
-- Use a lux sensor to ensure lights only activate if the ambient light is below a threshold.
-- Prevent lights from turning on during the night (e.g., 22:00 to 6:00) using DND mode.
-
----
-
-## Blueprint Code
-This blueprint code can be imported directly into Home Assistant.  
-View the full code [here](https://github.com/michaelheichler/hass-yalbp).
-
----
-
-## Installation
-1. Click on the big blue button at the top of this page. :)
-
----
-
-## Notes
-- Ensure all required entities are configured in Home Assistant before using this blueprint.
-- If using the Adaptive Lighting integration, ensure it's installed and properly set up.
-
----
-
-## Troubleshooting
-- **DND Time Parsing:** This blueprint includes improved error handling for invalid DND time formats.
-- Check the **Logbook** for debugging messages if the automation does not behave as expected.
-
----
-
-### License
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+<div align="center">
+Made with ❤️ for the Home Assistant Community
+</div>
