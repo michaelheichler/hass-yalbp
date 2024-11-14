@@ -8,7 +8,7 @@
 
 ![Version](https://img.shields.io/badge/version-1.1.0-blue?style=for-the-badge)
 ![Status](https://img.shields.io/badge/status-stable-green?style=for-the-badge)
-![Updated](https://img.shields.io/badge/updated-March%202024-purple?style=for-the-badge)
+![Updated](https://img.shields.io/badge/updated-November%202024-purple?style=for-the-badge)
 
 
 [![GitHub Stars](https://img.shields.io/github/stars/michaelheichler/hass-blueprint-lights?style=for-the-badge&logo=github)](https://github.com/michaelheichler/hass-blueprint-lights/stargazers)
