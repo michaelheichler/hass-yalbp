@@ -2,7 +2,7 @@
 
 # 🌟 Yet Another Light Automation Blueprint - But Smarter!
 
-[![Import Blueprint](https://my.home-assistant.io/badges/blueprint_import.svg)](https://my.home-assistant.io/redirect/blueprint_import/?blueprint_url=https://raw.githubusercontent.com/michaelheichler/hass-blueprint-lights/main/hass-blueprint-lights.yaml)
+[![Import Blueprint](https://my.home-assistant.io/badges/blueprint_import.svg)](https://my.home-assistant.io/redirect/blueprint_import/?blueprint_url=https://raw.githubusercontent.com/michaelheichler/hass-yalbp/main/hass-yalbp.yaml)
 
 ![Home Assistant Logo](https://www.home-assistant.io/images/blog/2023-09-ha10/home-assistant-logo-new.png)
 
@@ -11,8 +11,8 @@
 ![Updated](https://img.shields.io/badge/updated-November%202024-purple?style=for-the-badge)
 
 
-[![GitHub Stars](https://img.shields.io/github/stars/michaelheichler/hass-blueprint-lights?style=for-the-badge&logo=github)](https://github.com/michaelheichler/hass-blueprint-lights/stargazers)
-[![GitHub Issues](https://img.shields.io/github/issues/michaelheichler/hass-blueprint-lights?style=for-the-badge&logo=github)](https://github.com/michaelheichler/hass-blueprint-lights/issues)
+[![GitHub Stars](https://img.shields.io/github/stars/michaelheichler/hass-yalbp?style=for-the-badge&logo=github)](https://github.com/michaelheichler/hass-yalbp/stargazers)
+[![GitHub Issues](https://img.shields.io/github/issues/michaelheichler/hass-yalbp?style=for-the-badge&logo=github)](https://github.com/michaelheichler/hass-yalbp/issues)
 [![Buy me a coffee](https://img.shields.io/badge/PayPal-Buy%20me%20a%20coffee-blue?style=for-the-badge&logo=paypal)](https://paypal.me/MHeichler)
 
 </div>
@@ -141,9 +141,9 @@ If you find this blueprint helpful, consider supporting the development:
 
 ## 📊 Stats
 
-![GitHub Stars](https://img.shields.io/github/stars/michaelheichler/hass-blueprint-lights?style=for-the-badge&logo=github)
-![GitHub Issues](https://img.shields.io/github/issues/michaelheichler/hass-blueprint-lights?style=for-the-badge&logo=github)
-![GitHub Last Commit](https://img.shields.io/github/last-commit/michaelheichler/hass-blueprint-lights?style=for-the-badge&logo=github)
+![GitHub Stars](https://img.shields.io/github/stars/michaelheichler/hass-yalbp?style=for-the-badge&logo=github)
+![GitHub Issues](https://img.shields.io/github/issues/michaelheichler/hass-yalbp?style=for-the-badge&logo=github)
+![GitHub Last Commit](https://img.shields.io/github/last-commit/michaelheichler/hass-yalbp?style=for-the-badge&logo=github)
 
 ---
 
